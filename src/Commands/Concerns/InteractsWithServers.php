@@ -54,7 +54,7 @@ trait InteractsWithServers
                     $inspector->reloadServer();
                 } elseif ($watcher->isTerminated()) {
                     $this->error(
-                        'Watcher process has terminated. please ensure Node and chokidar are installed.'.PHP_EOL.
+                        'Watcher process has terminated. Please ensure Node and chokidar are installed.'.PHP_EOL.
                         $watcher->getErrorOutput()
                     );
 
@@ -65,7 +65,7 @@ trait InteractsWithServers
             }
 
             $this->writeServerOutput($server);
-        } catch (ServerShutdownException $e) {
+        } catch (ServerShutdownException) {
             return 1;
         } finally {
             $this->stopServer();
@@ -120,7 +120,7 @@ trait InteractsWithServers
             '',
             '  Local: <fg=white;options=bold>http://'.$this->option('host').':'.$this->option('port').' </>',
             '',
-            '  <fg=yellow>Use Ctrl+C to stop the server</>',
+            '  <fg=yellow>Press Ctrl+C to stop the server</>',
             '',
         ]);
     }

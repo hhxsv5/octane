@@ -29,7 +29,7 @@ class TaskExceptionResult
             : null;
 
         return new static(
-            get_class($throwable),
+            $throwable::class,
             $throwable->getMessage(),
             (int) $throwable->getCode(),
             $fallbackTrace['file'] ?? $throwable->getFile(),
@@ -44,6 +44,12 @@ class TaskExceptionResult
      */
     public function getOriginal()
     {
+        if ($this->class == DdException::class) {
+            return new DdException(
+                json_decode($this->message, true)
+            );
+        }
+
         return new TaskException(
             $this->class,
             $this->message,
